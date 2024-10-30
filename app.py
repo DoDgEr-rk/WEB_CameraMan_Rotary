@@ -11,24 +11,20 @@ app.secret_key = 'your_secret_key_here'  # Use a secret key for session manageme
 def index():
     if request.method == 'POST':
         try:
-            # Опитай да вземеш номера на камерите от първия формуляр
             camera_num_input = request.form.get('camera_num')
             camera_nums_input = request.form.get('camera_nums')
 
             if camera_nums_input:
-                # Въведен е списък с номера на камерите
                 camera_nums = [int(num.strip()) for num in camera_nums_input.split(',') if num.strip().isdigit()]
                 if not camera_nums:
                     raise ValueError("You must enter at least one valid camera number.")
                 random.shuffle(camera_nums)
                 session['cameras'] = camera_nums
             elif camera_num_input:
-                # Въведен е един брой
                 all_camera_num = int(camera_num_input)
                 if all_camera_num <= 0:
                     raise ValueError("Number of cameras must be greater than zero.")
 
-                # Генериране на списък от случайни камери
                 cameras = random.sample(range(1, all_camera_num + 1), all_camera_num)
                 session['cameras'] = cameras
 
@@ -50,16 +46,13 @@ def enter_names():
 
     if request.method == 'POST':
         try:
-            # Събери имената от формата
             name_list = [request.form.get(f'name_{i}', '') for i in range(all_camera_num)]
 
-            # Провери дали имаме достатъчно имена
             if len(name_list) != all_camera_num or any(name.strip() == '' for name in name_list):
                 raise ValueError("Not enough names provided or some names are empty.")
 
             final_list = [f'{name_list[i]} on camera {cameras[i]}' for i in range(all_camera_num)]
 
-            # Изчисти данните от сесията
             session.pop('cameras', None)
 
             return render_template('result.html', final_list=final_list)
@@ -72,7 +65,6 @@ def enter_names():
 
 @app.route('/exit', methods=['POST'])
 def exit():
-    # Clear the session data
     session.pop('camera_num', None)
     session.pop('cameras', None)
     return redirect(url_for('bye_bye'))
