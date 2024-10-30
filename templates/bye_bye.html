@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Goodbye</title>
+    <style>
+      body {
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+    <script>
+      // Call the shutdown route to stop the server
+      function shutdownServer() {
+        fetch('/shutdown', {
+          method: 'POST'
+        });
+      }
+
+      // Call the shutdown function after a delay
+      setTimeout(shutdownServer, 3000); // Adjust the delay as needed
+    </script>
+  </head>
+  <body>
+    <h1>Bye Bye!</h1>
+    <p>Thank you for using the Camera Assignment tool. Your session is now complete.</p>
+    <p>You can now close this tab or window. If you need to start again, you can visit the <a href="/IMS">home page</a>.</p>
+  </body>
+</html>

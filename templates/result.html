@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camera Assignment Results</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif; /* Задаване на шрифт за по-добър визуален вид */
+        margin: 20px; /* Добавяне на отстъп от всички страни на тялото на документа */
+      }
+
+      h1 {
+        margin-bottom: 20px; /* Разстояние под заглавието */
+      }
+
+      ul {
+        list-style-type: none; /* Премахва маркерите на списъка */
+        padding: 0; /* Премахва вътрешното отстъпление на списъка */
+        margin-bottom: 30px; /* Разстояние под списъка */
+      }
+
+      ul li {
+        margin-bottom: 15px; /* Разстояние между елементите на списъка */
+      }
+
+      .button-container {
+        margin-top: 30px; /* Разстояние над контейнера с бутоните */
+      }
+
+      .button-container a {
+        display: block;
+        margin-bottom: 15px; /* Разстояние под линка "Go Back" */
+      }
+
+      .button-container form {
+        display: block;
+        margin-top: 10px; /* Разстояние над бутона "Exit" */
+      }
+    </style>
+</head>
+<body>
+    <h1>Results</h1>
+    <ul>
+      {% for item in final_list %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="button-container">
+      <a href="/IMS">Go Back</a> <!-- Link to home page -->
+
+      <form action="{{ url_for('exit') }}" method="post">
+        <input type="submit" value="Exit">
+      </form>
+    </div>
+</body>
+</html>

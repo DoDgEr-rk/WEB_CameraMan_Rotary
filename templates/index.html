@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camera Assignment</title>
+  </head>
+  <body>
+    <h1>Enter the Number of Cameras. You have two ways:</h1>
+    <br>
+    <h1>Way 1: If All cameras are free:</h1>
+
+    {% if error %}
+      <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+      <label for="camera_num">Еnter the number of free cameras:</label>
+      <input type="number" id="camera_num" name="camera_num" min="1" required>
+      <input type="submit" value="Submit">
+    </form>
+
+    <br><br>
+    <h1>Way 2: If you want only special camera numbers:</h1>
+
+    {% if error %}
+      <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+      <label for="camera_nums">Еnter the numbers of free cameras (like 1, 4, 5, 7....):</label>
+      <input type="text" id="camera_nums" name="camera_nums" required>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
